@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "ts": 1771435734906,
+    "pp": 33511,
+    "prices": {
+      "Quartz Point": 9999995,
+      "Chalcedony Point": 33333333,
+      "Basalt Point": 4100000,
+      "Quartzite Point": 255500,
+      "Chert Point": 126446,
+      "Obsidian Point": 95000000,
+      "Dahlia": 3170,
+      "Orchid": 7600,
+      "African Violet": 2994,
+      "Cherry Blossom": 7500,
+      "Peony": 9700,
+      "Ceibo Flower": 3345,
+      "Edelweiss": 31995,
+      "Crocus": 37503,
+      "Heather": 32335,
+      "Tribulus Omanense": 37390,
+      "Banana Orchid": 1947766,
+      "Sheep Plushie": 604,
+      "Teddy Bear Plushie": 619,
+      "Jaguar Plushie": 175000000,
+      "Chamois Plushie": 326984,
+      "Panda Plushie": 325978,
+      "Lion Plushie": 26300000
+    },
+    "source": "github"
+  }
+]
