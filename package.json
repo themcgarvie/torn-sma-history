@@ -1,0 +1,13 @@
+{
+  "name": "torn-sma-history",
+  "version": "1.0.0",
+  "description": "Hourly Torn set market price history collector for WoJ Set Market Analysis",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "fetch": "node scripts/fetch-prices.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
