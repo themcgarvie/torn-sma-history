@@ -1,0 +1,37 @@
+name: Fetch Torn Set Prices
+
+on:
+  schedule:
+    # Every hour at :05 past (avoids top-of-hour API congestion)
+    - cron: "5 * * * *"
+  workflow_dispatch:
+    # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write   # needed to commit history.json back to the repo
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch prices
+        env:
+          TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+        run: node scripts/fetch-prices.js
+
+      - name: Commit updated history
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history.json
+          # Only commit if there are actual changes
+          git diff --cached --quiet || git commit -m "chore: hourly price snapshot $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git push
