@@ -88,5 +88,35 @@
       "Lion Plushie": 28749995
     },
     "source": "github"
+  },
+  {
+    "ts": 1771451288659,
+    "pp": 33394,
+    "prices": {
+      "Quartz Point": 9999995,
+      "Chalcedony Point": 35000000,
+      "Basalt Point": 4100000,
+      "Quartzite Point": 289881,
+      "Chert Point": 135000,
+      "Obsidian Point": 95000000,
+      "Dahlia": 3200,
+      "Orchid": 8500,
+      "African Violet": 3000,
+      "Cherry Blossom": 6495,
+      "Peony": 9545,
+      "Ceibo Flower": 8000,
+      "Edelweiss": 30999,
+      "Crocus": 37990,
+      "Heather": 32342,
+      "Tribulus Omanense": 36037,
+      "Banana Orchid": 1939999,
+      "Sheep Plushie": 604,
+      "Teddy Bear Plushie": 623,
+      "Jaguar Plushie": 175000000,
+      "Chamois Plushie": 305595,
+      "Panda Plushie": 306680,
+      "Lion Plushie": 28750000
+    },
+    "source": "github"
   }
 ]
