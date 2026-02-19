@@ -34,15 +34,10 @@ jobs:
       - name: Fetch prices
         env:
           TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
-        run: node scripts/fetch-prices.js
-
-      - name: Fetch prices
-        env:
-          TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
           run: node scripts/fetch-prices.js
 
       - name: Commit updated history
-        run:
+        run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/history.json
