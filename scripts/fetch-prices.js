@@ -96,12 +96,17 @@ async function fetchItemPrices(name, itemId) {
       console.warn(`  WARN [${name}] step1:`, JSON.stringify(data.error));
     } else {
       const mraw  = data.itemmarket;
-      const mlist = extractListings(mraw?.listings ?? mraw ?? []);
-      marketPrice = cheapest(mlist);
-      // Only fall back to average_price if listings truly empty
-      if (marketPrice === null) {
-        const avg = mraw?.item?.average_price ?? 0;
-        if (avg > 0) marketPrice = avg;
+      // Use Torn's server-side average_price as primary market price.
+      // The listings endpoint only returns a capped subset (not sorted by price),
+      // so cheapest(listings) can return an outlier. average_price is computed
+      // server-side across ALL listings and is far more reliable for history.
+      const avg = mraw?.item?.average_price ?? 0;
+      if (avg > 0) {
+        marketPrice = avg;
+      } else {
+        // Fallback: scan whatever listings came back
+        const mlist = extractListings(mraw?.listings ?? mraw ?? []);
+        marketPrice = cheapest(mlist);
       }
       const specialized = data.bazaar?.specialized ?? [];
       shopIds = specialized
@@ -176,7 +181,7 @@ async function main() {
     const prices = await fetchItemPrices(name, ITEMS[name]);
     if (prices.market !== null) market[name] = prices.market;
     if (prices.bazaar !== null) bazaar[name] = prices.bazaar;
-    console.log(`  [${i+1}/${names.length}] ${name}:  mkt=${prices.market !== null ? "$"+prices.market.toLocaleString() : "—"}  baz=${prices.bazaar !== null ? "$"+prices.bazaar.toLocaleString() : "—"}`);
+    console.log(`  [${i+1}/${names.length}] ${name}:  mkt(avg)=${prices.market !== null ? "$"+prices.market.toLocaleString() : "—"}  baz=${prices.bazaar !== null ? "$"+prices.bazaar.toLocaleString() : "—"}`);
   }
 
   const pp = await fetchPointsPrice();
