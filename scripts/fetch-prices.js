@@ -20,6 +20,12 @@ import { fileURLToPath }                           from "url";
 
 const __dirname    = dirname(fileURLToPath(import.meta.url));
 const HISTORY_PATH = join(__dirname, "../data/history.json");
+// ── Configuration ────────────────────────────────────────────────────────────
+// How many hourly snapshots to keep. At 1 per hour:
+//   720  = 30 days  (default)
+//   2160 = 90 days  (3 months)
+//   8760 = 365 days (1 year)
+// history.json file size: roughly 2–3 KB per snapshot, so 2160 ≈ 5–6 MB.
 const MAX_ENTRIES  = 720;
 const DELAY_MS     = 700;
 
@@ -28,7 +34,7 @@ if (!API_KEY) { console.error("ERROR: TORN_API_KEY not set."); process.exit(1); 
 
 const ITEMS = {
   "Quartz Point":      1504, "Chalcedony Point":  1503, "Basalt Point":      1502,
-  "Quartzite Point":   1500, "Chert Point":       542, "Obsidian Point":    1499,
+  "Quartzite Point":   1500, "Chert Point":       1501, "Obsidian Point":   1499,
   "Dahlia":            260, "Orchid":            264, "African Violet":    282,
   "Cherry Blossom":    277, "Peony":             276, "Ceibo Flower":      271,
   "Edelweiss":         272, "Crocus":            263, "Heather":           267,
@@ -96,18 +102,6 @@ async function fetchItemPrices(name, itemId) {
       console.warn(`  WARN [${name}] step1:`, JSON.stringify(data.error));
     } else {
       const mraw  = data.itemmarket;
-
-      // DIAG: log raw structure for first item so we can see what the API returns
-      if (itemId === 538) {
-        const mlistRaw = mraw?.listings ?? mraw ?? [];
-        const entries  = extractListings(mlistRaw);
-        console.log(`  [DIAG] itemmarket keys: ${Object.keys(mraw ?? {}).join(", ")}`);
-        console.log(`  [DIAG] item.average_price: ${mraw?.item?.average_price}`);
-        console.log(`  [DIAG] listings type: ${Array.isArray(mraw?.listings) ? "array["+mraw.listings.length+"]" : typeof mraw?.listings}`);
-        console.log(`  [DIAG] extractListings count: ${entries.length}`);
-        console.log(`  [DIAG] first 3 entries: ${JSON.stringify(entries.slice(0, 3))}`);
-        console.log(`  [DIAG] cheapest from listings: ${cheapest(entries)}`);
-      }
 
       // Use Torn's server-side average_price as primary market price.
       const avg = mraw?.item?.average_price ?? 0;
