@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
     # Allows manual trigger from GitHub Actions tab
 
+concurrency:
+    group: fetch-prices
+    cancel-in-progress: false    
+
 permissions:
   contents: write   # needed to commit history.json back to the repo
 
@@ -31,8 +35,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main
           git add data/history.json
           git diff --cached --quiet || git commit -m "chore: hourly price snapshot $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-          git pull --rebase origin main
           git push
-
