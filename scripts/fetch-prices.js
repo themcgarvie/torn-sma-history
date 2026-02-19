@@ -27,17 +27,17 @@ const API_KEY = process.env.TORN_API_KEY;
 if (!API_KEY) { console.error("ERROR: TORN_API_KEY not set."); process.exit(1); }
 
 const ITEMS = {
-  "Quartz Point":      538, "Chalcedony Point":  539, "Basalt Point":      540,
-  "Quartzite Point":   541, "Chert Point":       542, "Obsidian Point":    543,
-  "Dahlia":            260, "Orchid":            261, "African Violet":    262,
-  "Cherry Blossom":    263, "Peony":             264, "Ceibo Flower":      265,
-  "Edelweiss":         266, "Crocus":            267, "Heather":           268,
-  "Tribulus Omanense": 269, "Banana Orchid":     532,
-  "Sheep Plushie":     186, "Teddy Bear Plushie":187, "Kitten Plushie":    188,
-  "Jaguar Plushie":    581, "Wolverine Plushie": 582, "Nessie Plushie":    583,
-  "Red Fox Plushie":   584, "Monkey Plushie":    585, "Chamois Plushie":   586,
-  "Panda Plushie":     587, "Lion Plushie":      588, "Camel Plushie":     589,
-  "Stingray Plushie":  590,
+  "Quartz Point":      1504, "Chalcedony Point":  1503, "Basalt Point":      1502,
+  "Quartzite Point":   1500, "Chert Point":       542, "Obsidian Point":    1499,
+  "Dahlia":            260, "Orchid":            264, "African Violet":    282,
+  "Cherry Blossom":    277, "Peony":             276, "Ceibo Flower":      271,
+  "Edelweiss":         272, "Crocus":            263, "Heather":           267,
+  "Tribulus Omanense": 385, "Banana Orchid":     617,
+  "Sheep Plushie":     186, "Teddy Bear Plushie":187, "Kitten Plushie":    215,
+  "Jaguar Plushie":    258, "Wolverine Plushie": 261, "Nessie Plushie":    266,
+  "Red Fox Plushie":   268, "Monkey Plushie":    269, "Chamois Plushie":   273,
+  "Panda Plushie":     274, "Lion Plushie":      281, "Camel Plushie":     384,
+  "Stingray Plushie":  618,
 };
 
 // ── Helpers (mirrors userscript extractListings + listingCost) ────────────────
