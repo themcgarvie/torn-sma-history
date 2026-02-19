@@ -6,7 +6,8 @@ on:
     - cron: "5 * * * *"
   workflow_dispatch:
     # Allows manual trigger from GitHub Actions tab
-  concurrency:
+
+concurrency:
     group: fetch-prices
     cancel-in-progress: false    
 
