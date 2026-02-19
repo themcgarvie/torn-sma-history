@@ -37,5 +37,44 @@
       "Teddy Bear Plushie": 650
     },
     "source": "github"
+  },
+  {
+    "ts": 1771495314927,
+    "pp": 33799,
+    "market": {
+      "Quartz Point": 9999995,
+      "Chalcedony Point": 41999985,
+      "Basalt Point": 4100000,
+      "Quartzite Point": 256876,
+      "Chert Point": 127085,
+      "Obsidian Point": 95000000,
+      "Dahlia": 2550,
+      "Orchid": 6505,
+      "African Violet": 3002,
+      "Cherry Blossom": 5960,
+      "Peony": 9567,
+      "Ceibo Flower": 3342,
+      "Edelweiss": 31371,
+      "Crocus": 37535,
+      "Heather": 32411,
+      "Tribulus Omanense": 36201,
+      "Banana Orchid": 1818491,
+      "Sheep Plushie": 605,
+      "Teddy Bear Plushie": 628,
+      "Jaguar Plushie": 175000000,
+      "Chamois Plushie": 303841,
+      "Panda Plushie": 300454,
+      "Lion Plushie": 26880214
+    },
+    "bazaar": {
+      "Dahlia": 3198,
+      "Orchid": 8300,
+      "Cherry Blossom": 7000,
+      "Peony": 9570,
+      "Edelweiss": 31300,
+      "Tribulus Omanense": 38890,
+      "Teddy Bear Plushie": 650
+    },
+    "source": "github"
   }
 ]
