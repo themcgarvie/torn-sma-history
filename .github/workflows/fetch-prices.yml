@@ -34,7 +34,7 @@ jobs:
       - name: Fetch prices
         env:
           TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
-          run: node scripts/fetch-prices.js
+        run: node scripts/fetch-prices.js
 
       - name: Commit updated history
         run: |
