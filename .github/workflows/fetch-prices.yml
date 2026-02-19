@@ -26,15 +26,15 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Clean working directory
+        run: |
+          git reset --hard
+          git clean -fd
+
       - name: Fetch prices
         env:
           TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
         run: node scripts/fetch-prices.js
-
-      - name: Stash or discard any local changes
-        run: |
-          git reset --hard   # Discards all local changes
-          git clean -fd      # Removes untracked files and directories        
 
       - name: Commit updated history
         run: |
