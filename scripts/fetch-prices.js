@@ -40,14 +40,40 @@ const ITEMS = {
   "Stingray Plushie":  590,
 };
 
+// ── Helpers (mirrors userscript extractListings + listingCost) ────────────────
+
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-function cheapestFromListings(listings) {
-  if (!Array.isArray(listings) || !listings.length) return null;
+// Handles: plain array, {listings:[]}, {items:[]}, keyed object of listings
+function extractListings(sec) {
+  if (!sec) return [];
+  if (Array.isArray(sec)) return sec;
+  if (typeof sec === "object") {
+    if (Array.isArray(sec.listings)) return sec.listings;
+    for (const k of ["items", "offers", "rows", "data", "results"]) {
+      if (Array.isArray(sec[k])) return sec[k];
+      if (sec[k] && Array.isArray(sec[k].listings)) return sec[k].listings;
+    }
+    // keyed object → values (only if entries look like listings)
+    const vals = Object.values(sec).filter(v => v && typeof v === "object");
+    if (vals.some(v => ("price" in v) || ("cost" in v) || ("amount" in v))) return vals;
+  }
+  return [];
+}
+
+function listingCost(l) {
+  if (!l || typeof l !== "object") return null;
+  for (const v of [l.price, l.cost, l.amount, l.value]) {
+    if (typeof v === "number" && v > 0) return v;
+  }
+  return null;
+}
+
+function cheapest(listings) {
   let min = Infinity;
   for (const l of listings) {
-    const p = typeof l.price === "number" ? l.price : typeof l.cost === "number" ? l.cost : null;
-    if (p !== null && p > 0 && p < min) min = p;
+    const c = listingCost(l);
+    if (c !== null && c < min) min = c;
   }
   return isFinite(min) ? min : null;
 }
@@ -57,6 +83,8 @@ async function apiGet(path) {
   const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
   return res.json();
 }
+
+// ── Fetch one item: market + bazaar ───────────────────────────────────────────
 
 async function fetchItemPrices(name, itemId) {
   let marketPrice = null;
@@ -68,8 +96,9 @@ async function fetchItemPrices(name, itemId) {
       console.warn(`  WARN [${name}] step1:`, JSON.stringify(data.error));
     } else {
       const mraw  = data.itemmarket;
-      const mlist = mraw?.listings ?? (Array.isArray(mraw) ? mraw : []);
-      marketPrice = cheapestFromListings(mlist);
+      const mlist = extractListings(mraw?.listings ?? mraw ?? []);
+      marketPrice = cheapest(mlist);
+      // Only fall back to average_price if listings truly empty
       if (marketPrice === null) {
         const avg = mraw?.item?.average_price ?? 0;
         if (avg > 0) marketPrice = avg;
@@ -100,8 +129,7 @@ async function fetchItemPrices(name, itemId) {
         for (const e of entries) {
           const eid = e.ID ?? e.id ?? e.item_id;
           if (Number(eid) !== Number(itemId)) continue;
-          const p = typeof e.price === "number" && e.price > 0 ? e.price
-                  : typeof e.cost  === "number" && e.cost  > 0 ? e.cost : null;
+          const p = listingCost(e);
           if (p !== null && (bazaarPrice === null || p < bazaarPrice)) bazaarPrice = p;
         }
       }
@@ -114,6 +142,8 @@ async function fetchItemPrices(name, itemId) {
   return { market: marketPrice, bazaar: bazaarPrice };
 }
 
+// ── Points price ──────────────────────────────────────────────────────────────
+
 async function fetchPointsPrice() {
   try {
     const data = await apiGet("/v2/market/pointsmarket?selections=pointsmarket");
@@ -123,6 +153,8 @@ async function fetchPointsPrice() {
     return costs.length ? Math.round(costs.reduce((s, v) => s + v, 0) / costs.length) : 0;
   } catch { return 0; }
 }
+
+// ── Main ──────────────────────────────────────────────────────────────────────
 
 async function main() {
   console.log(`[SMA] Starting fetch at ${new Date().toISOString()}`);
