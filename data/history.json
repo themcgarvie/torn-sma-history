@@ -19180,5 +19180,37 @@
       "Stingray Plushie": 7600
     },
     "source": "github"
+  },
+  {
+    "ts": 1772975373398,
+    "pp": 33726,
+    "market": {
+      "Quartz Point": 144788,
+      "Chalcedony Point": 136416,
+      "Basalt Point": 115697,
+      "Quartzite Point": 181784,
+      "Chert Point": 159320,
+      "Obsidian Point": 111831,
+      "Dahlia": 2797,
+      "Orchid": 8406,
+      "African Violet": 55474,
+      "Cherry Blossom": 37377,
+      "Peony": 56428,
+      "Ceibo Flower": 35116,
+      "Stingray Plushie": 7397
+    },
+    "bazaar": {
+      "Chalcedony Point": 138000,
+      "Quartzite Point": 180000,
+      "Chert Point": 160000,
+      "Obsidian Point": 111900,
+      "Dahlia": 2999,
+      "Orchid": 8490,
+      "African Violet": 60000,
+      "Cherry Blossom": 37500,
+      "Ceibo Flower": 35110,
+      "Stingray Plushie": 7500
+    },
+    "source": "github"
   }
 ]
