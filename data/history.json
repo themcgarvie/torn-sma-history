@@ -1,12 +1,5 @@
 [
   {
-    "ts": 1777368707916,
-    "pp": 0,
-    "market": {},
-    "bazaar": {},
-    "source": "github"
-  },
-  {
     "ts": 1777377555973,
     "pp": 34837,
     "market": {
@@ -44988,6 +44981,69 @@
       "Lion Plushie": 57500,
       "Camel Plushie": 69250,
       "Stingray Plushie": 4825
+    },
+    "source": "github"
+  },
+  {
+    "ts": 1784557776930,
+    "pp": 30891,
+    "market": {
+      "Quartz Point": 137176,
+      "Chalcedony Point": 121583,
+      "Basalt Point": 114046,
+      "Quartzite Point": 138833,
+      "Chert Point": 126435,
+      "Obsidian Point": 134203,
+      "Dahlia": 2011,
+      "Orchid": 4300,
+      "African Violet": 56048,
+      "Cherry Blossom": 44064,
+      "Peony": 51388,
+      "Ceibo Flower": 26076,
+      "Edelweiss": 8244,
+      "Crocus": 3846,
+      "Heather": 30096,
+      "Tribulus Omanense": 57053,
+      "Banana Orchid": 7827,
+      "Sheep Plushie": 481,
+      "Teddy Bear Plushie": 482,
+      "Kitten Plushie": 502,
+      "Jaguar Plushie": 13681,
+      "Wolverine Plushie": 4472,
+      "Nessie Plushie": 24125,
+      "Red Fox Plushie": 24869,
+      "Monkey Plushie": 29106,
+      "Chamois Plushie": 16144,
+      "Panda Plushie": 49439,
+      "Lion Plushie": 56475,
+      "Camel Plushie": 69037,
+      "Stingray Plushie": 4778
+    },
+    "bazaar": {
+      "Quartz Point": 149999,
+      "Dahlia": 3000,
+      "Orchid": 4299,
+      "African Violet": 56000,
+      "Cherry Blossom": 48950,
+      "Peony": 51300,
+      "Ceibo Flower": 26440,
+      "Edelweiss": 9800,
+      "Heather": 34800,
+      "Tribulus Omanense": 57053,
+      "Banana Orchid": 8500,
+      "Sheep Plushie": 550,
+      "Teddy Bear Plushie": 5000,
+      "Kitten Plushie": 590,
+      "Jaguar Plushie": 14899,
+      "Wolverine Plushie": 4750,
+      "Nessie Plushie": 29000,
+      "Red Fox Plushie": 28899,
+      "Monkey Plushie": 29290,
+      "Chamois Plushie": 17500,
+      "Panda Plushie": 48945,
+      "Lion Plushie": 57500,
+      "Camel Plushie": 69250,
+      "Stingray Plushie": 4800
     },
     "source": "github"
   }
